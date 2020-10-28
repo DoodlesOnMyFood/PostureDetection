@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./App.css";
-import * as tf from "@tensorflow/tfjs";
+import "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet"; //포즈 인식 모델
 import Webcam from "react-webcam";
 import { drawKeypoints, drawSkeleton } from "./utilities";
