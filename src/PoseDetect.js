@@ -11,6 +11,7 @@ function PoseDetect( { setPoseDetect } ) {
   const [netLoaded, setNetLoaded] = useState(false)
   const [findingBaseLine, setFindingBaseLine] = useState(false)
   const [baseLine, setBaseLine] = useState(false)
+  const [counter, incrementCounter] = useState(0)
   const [statusLog, setStatusLog] = useState([])
   let intervalRef 
   function sleep(ms) {
@@ -18,7 +19,10 @@ function PoseDetect( { setPoseDetect } ) {
   }
   
   const baseLineFinding = async () =>{
-    setStatusLog((prev) => [ ...prev, "자세 바르게 잡으세요"])
+    const comment = "자세 바르게 잡으세요"
+    const temp_count = counter
+    incrementCounter((prev)=>prev+1)
+    setStatusLog((prev) => [ ...prev, {log : comment, key : temp_count}])
     await sleep(3000)
     let i
     for(i = 0; i < 10; i++){
@@ -28,7 +32,7 @@ function PoseDetect( { setPoseDetect } ) {
     }
     setBaseLine(true)
     setStatusLog((prev) =>{
-      let index = prev.indexOf("자세 바르게 잡으세요")
+      let index = prev.indexOf({log : comment, key : temp_count})
       prev.splice(index, 1)
       return [...prev]
     })
@@ -51,6 +55,7 @@ function PoseDetect( { setPoseDetect } ) {
     }, 500);
     console.log(intervalRef)
   };
+
   useEffect(()=>{
     if(!netLoaded){
       runPosenet().then((rem) => {setNet(rem)})
@@ -62,7 +67,7 @@ function PoseDetect( { setPoseDetect } ) {
         .then(() => {setFindingBaseLine(false)})
         .then(() => {startDetect()})
     }
-  })
+  }, [net, netLoaded, findingBaseLine, baseLine, statusLog])
 
   const detect = async () => {
     if (//카메라 상태 체크
