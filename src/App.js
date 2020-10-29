@@ -1,24 +1,15 @@
 import React, { useState, Suspense } from "react";
+import AppInner from "./AppInner"
 
-const PoseDetect = React.lazy( () => import("./PoseDetect"))
 
 function App() {
-  const [showPoseDetect, setPoseDetect] = useState(false)
-
-  if (showPoseDetect){
-    return(
-      <div className="App-header">
-        <Suspense fallback={<div>Loading...</div>}>
-          <PoseDetect setPoseDetect={setPoseDetect}/>
-        </Suspense>
-      </div>
-    )
-  }
   return(
-    <div className="App-header">
-      <button onClick={()=>setPoseDetect(true)}>Start detecting</button>
-    </div>
+    <div >
+      <p>Outer</p>
+      <AppInner />
+      <p>Outer</p>
+    </div> 
   )
 }
 
-export default App;
+export default App
