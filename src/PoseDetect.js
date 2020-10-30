@@ -129,7 +129,15 @@ function PoseDetect( { setPoseDetect } ) {
     
         <Status statusLog={statusLog} />
 
-        <button style={{position: "absolute",bottom:"30%"}} onClick={()=>setPoseDetect(false)}>close</button>
+        <button 
+          style={{
+            borderRadius:"4px",
+            color: "#fff",
+            position: "absolute",
+            bottom:"30%",
+            backgroundColor: "#000000"
+            }} 
+          onClick={()=>setPoseDetect(false)}>close</button>
       </header> 
     </div>
   );

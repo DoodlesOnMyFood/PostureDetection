@@ -19,7 +19,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-items: center;
   color: #fff;
+  text-align: center;
 }
 
 .App-body {

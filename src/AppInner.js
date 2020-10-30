@@ -16,7 +16,13 @@ function App_inner() {
   }
   return(
     <div>
-      <button onClick={()=>setPoseDetect(true)}>Start detecting</button>
+      <button 
+        style={{
+          borderRadius:"4px",
+          color: "#fff",
+          backgroundColor: "#000000"
+          }} 
+        onClick={()=>setPoseDetect(true)}>Start detecting</button>
     </div>
   )
 }
