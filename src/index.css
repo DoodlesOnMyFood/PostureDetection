@@ -30,9 +30,9 @@ code {
   background-color: #000000;
   min-height: 10vh;
   display: flex;
-  flex-direction: row;
   align-items: center;
   color: #fff;
+  text-align: center;
 }
 
 .App-body {

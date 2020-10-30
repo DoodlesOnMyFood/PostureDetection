@@ -1,5 +1,5 @@
 import React from "react";
-import AppInner from "./AppInner"
+import AppInner from "./AppInner";
 
 
 function App() {
