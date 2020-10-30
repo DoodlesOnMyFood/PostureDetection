@@ -11,6 +11,17 @@ function App() {
       <div className="App-body">
         <AppInner />
       </div>
+      <div className="w3-row-padding w3-center w3-margin-top">
+        <div className="w3-third">
+          <button className="w3-card w3-container" style={{minHeight="17vh"}} onClick={}>Button1</button>
+        </div>
+        <div className="w3-third">
+          <button className="w3-card w3-container" style={{minHeight="17vh"}} onClick={}>Button1</button>
+        </div>
+        <div className="w3-third">
+          <button className="w3-card w3-container" style={{minHeight="17vh"}} onClick={}>Button1</button>
+        </div>        
+      </div>
     </div> 
   )
 }
