@@ -5,15 +5,17 @@ import * as posenet from "@tensorflow-models/posenet"; //포즈 인식 모델
 import Webcam from "react-webcam";
 import Status from "./Status"
 
+
+
 function PoseDetect( { setPoseDetect } ) {
   const webcamRef = useRef(null);
   const [net, setNet] = useState(null)
   const [netLoaded, setNetLoaded] = useState(false)
-  const [findingBaseLine, setFindingBaseLine] = useState(false)
-  const [baseLine, setBaseLine] = useState(false)
+  const [baseLine, setBaseLine] = useState(null)
+  const [intervalRef, setIntervalRef] = useState(null)
   const [counter, incrementCounter] = useState(0)
   const [statusLog, setStatusLog] = useState([])
-  let intervalRef 
+  
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -30,12 +32,12 @@ function PoseDetect( { setPoseDetect } ) {
       sleep(300)
       console.log(pose)
     }
-    setBaseLine(true)
     setStatusLog((prev) =>{
       let index = prev.indexOf({log : comment, key : temp_count})
       prev.splice(index, 1)
       return [...prev]
     })
+    setBaseLine(1) // setBaseLine to value. Dummy value for now
   }
 
   //  Load posenet
@@ -48,26 +50,29 @@ function PoseDetect( { setPoseDetect } ) {
     console.log("temp is", temp)
     return temp
   }
-  
   const startDetect = () => {
-    intervalRef = setInterval(() => {
-      detect(net)
-    }, 500);
+    setIntervalRef(setInterval(() => {
+        detect(net)
+      }, 500)
+    )
     console.log(intervalRef)
   };
-
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Try and fix this warning if you can.
+  // eslint-disable-next-line
   useEffect(()=>{
     if(!netLoaded){
       runPosenet().then((rem) => {setNet(rem)})
         .then(()=>{setNetLoaded(true)})
     }
-    if(!baseLine && !findingBaseLine && netLoaded){
-      setFindingBaseLine(true)
+    if(baseLine === null && netLoaded){
+      setBaseLine(true)// block this if statement
+      if(intervalRef !== null){
+        clearInterval(intervalRef)
+      }
       baseLineFinding()
-        .then(() => {setFindingBaseLine(false)})
         .then(() => {startDetect()})
     }
-  }, [net, netLoaded, findingBaseLine, baseLine, statusLog])
+  })
 
   const detect = async () => {
     if (//카메라 상태 체크
