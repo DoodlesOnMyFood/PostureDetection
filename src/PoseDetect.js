@@ -21,7 +21,7 @@ function PoseDetect( { setPoseDetect } ) {
   }
   
   const baseLineFinding = async () =>{
-    const comment = "자세 바르게 잡으세요"
+    const comment = "Correct Your Posture!"
     const temp_count = counter
     incrementCounter((prev)=>prev+1)
     setStatusLog((prev) => [ ...prev, {log : comment, key : temp_count}])
