@@ -11,15 +11,15 @@ function App() {
       <div className="App-body">
         <AppInner />
       </div>
-      <div className="w3-row-padding w3-center w3-margin-top">
+      <div className="w3-row-padding w3-center w3-margin-top w3-theme">
         <div className="w3-third">
-          <button className="w3-card w3-container" style={{minHeight:"17vh"}} onClick={()=>setPoseDetect(true)}>Button1</button>
+          <button className="w3-card w3-container" style={{minHeight:"17vh", minWidth:"32vh"}} onClick={()=>1+1}>Button1</button>
         </div>
         <div className="w3-third">
-          <button className="w3-card w3-container" style={{minHeight:"17vh"}} onClick={()=>setPoseDetect(true)}>Button2</button>
+          <button className="w3-card w3-container" style={{minHeight:"17vh", minWidth:"32vh"}} onClick={()=>1+1}>Button2</button>
         </div>
         <div className="w3-third">
-          <button className="w3-card w3-container" style={{minHeight:"17vh"}} onClick={()=>setPoseDetect(true)}>Button3</button>
+          <button className="w3-card w3-container" style={{minHeight:"17vh", minWidth:"32vh"}} onClick={()=>1+1}>Button3</button>
         </div>        
       </div>
     </div> 
