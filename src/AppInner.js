@@ -7,7 +7,7 @@ function App_inner() {
 
   if (showPoseDetect){
     return(
-      <div className="App-header">
+      <div>
         <Suspense fallback={<div>Loading...</div>}>
           <PoseDetect setPoseDetect={setPoseDetect}/>
         </Suspense>
@@ -15,7 +15,7 @@ function App_inner() {
     )
   }
   return(
-    <div className="App-header">
+    <div>
       <button onClick={()=>setPoseDetect(true)}>Start detecting</button>
     </div>
   )

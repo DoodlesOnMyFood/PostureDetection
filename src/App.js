@@ -5,7 +5,12 @@ import AppInner from "./AppInner"
 function App() {
   return(
     <div >
-      <AppInner />
+      <header className="App-header">
+        <h2>교정교관</h2>
+      </header>
+      <div className="App-body">
+        <AppInner />
+      </div>
     </div> 
   )
 }
