@@ -9,9 +9,9 @@ import Col from 'react-bootstrap/Col'
 
 function App() {
   return(
-    <Container fluid>
-      <Row> 
-        <Col>
+    <Container fluid className="p-0">
+      <Row > 
+        <Col >
           <AppHeader />
         </Col>
       </Row>
@@ -21,7 +21,7 @@ function App() {
         </Col>
       </Row>
       <Row>
-        <Col>Footer
+        <Col>
           <AppFooter />
         </Col>
       </Row>

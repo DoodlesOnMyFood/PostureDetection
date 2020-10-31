@@ -9,7 +9,13 @@ function App_inner() {
   if (showPoseDetect){
     return(
       <div>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={
+          <div className="App">
+            <div className="App-body">
+              <h1>Loading...</h1>
+            </div>
+          </div>
+        }>
           <PoseDetect setPoseDetect={setPoseDetect}/>
         </Suspense>
       </div>
@@ -18,21 +24,9 @@ function App_inner() {
   return(
     <div className="App">
       <div className="App-body">
-        <img src={sitright} alt= "Placeholder" style={{
-          position: "absolute",
-          marginLeft: "auto",
-          marginRight: "auto",
-          width: 320,
-          height: 240
-        }}/>
+        <img src={sitright} alt= "Placeholder" className="cam_style"/>
         <button 
-          style={{
-            borderRadius:"4px",
-            color: "#fff",
-            position: "absolute",
-            bottom:"30%",
-            backgroundColor: "#000000"
-            }} 
+          className="open_button" 
           onClick={()=>setPoseDetect(true)}>Start detecting</button>
       </div>
     </div>
