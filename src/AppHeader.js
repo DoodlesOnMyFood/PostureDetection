@@ -27,7 +27,7 @@ function App_Header() {
               </Nav>
               <Nav>
                 <Nav.Link href="settings">
-                    <Image src={require('./Images/cog(gray).png')} rounded fluid/>
+                    <Image src={require('./Images/cog(gray).png')} style={ImageIconStyle}/>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
