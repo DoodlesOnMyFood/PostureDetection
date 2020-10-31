@@ -1,10 +1,10 @@
 import React from "react";
-import {Image} from 'react-native'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import {brand_style, ImageIconStyle} from "./styles"
+import cog from './Images/cog(gray).png';
 
 
 function App_Header() {
@@ -27,8 +27,7 @@ function App_Header() {
               </Nav>
               <Nav>
                 <Nav.Link href="settings">
-                    <Image
-                    source={require('./Images/cog(gray).png')}
+                    <img src={cog}
                     style={ImageIconStyle}/>
                 </Nav.Link>
               </Nav>
