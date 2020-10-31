@@ -1,10 +1,10 @@
 import React from "react";
 import AppInner from "./AppInner";
-
+import Container from 'react-bootstrap/Container'
 
 function App() {
   return(
-    <div >
+    <Container className="p-3">
       <header className="App-header">
         <h2>PoseSergeant</h2>
       </header>
@@ -22,7 +22,7 @@ function App() {
           <button className="w3-card w3-container w3-round-medium" style={{minWidth:"50vh",minHeight:"17vh",color:"#fff",backgroundColor:"#282c34"}} onClick={()=>1+1}>Button3</button>
         </div>        
       </div>
-    </div> 
+    </Container> 
   )
 }
 
