@@ -20,7 +20,7 @@ export const setting_style = {
 export const ImageIconStyle = {
     padding: 10,
     margin: 5,
-    height: 25,
-    width: 25,
+    height: '2em',
+    width: '2em',
     resizeMode : 'stretch'
  }
