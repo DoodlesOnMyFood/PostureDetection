@@ -27,13 +27,9 @@ function App_Header() {
                 </NavDropdown>
               </Nav>
               <Nav>
-                <NavDropdown id="collasible-nav-dropdown" href="#settings">
+                <Nav.Link href="#settings">
                     <Image src={require('./Images/cog(gray).png')} style={ImageIconStyle}/>
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                </NavDropdown>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
