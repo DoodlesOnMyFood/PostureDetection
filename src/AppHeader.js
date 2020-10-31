@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import {brand_style, ImageIconStyle} from "./styles"
-import cog from './Images/cog(gray).png';
+import Image from 'react-bootstrap/Image'
 
 
 function App_Header() {
@@ -27,8 +27,7 @@ function App_Header() {
               </Nav>
               <Nav>
                 <Nav.Link href="settings">
-                    <img src={cog}
-                    style={ImageIconStyle}/>
+                    <Image src="./Images/cog(gray).png" rounded fluid/>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
