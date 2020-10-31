@@ -1,11 +1,11 @@
-import React, { useState, Suspense } from "react";
+import React from "react";
 
 const PoseDetect = React.lazy( () => import("./PoseDetect"))
 
 function App_Footer() {
   return(
       <div>
-          
+
       </div>
   )
 }
