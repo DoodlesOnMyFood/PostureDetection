@@ -2,8 +2,6 @@ import React from "react";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
-const PoseDetect = React.lazy( () => import("./PoseDetect"))
-
 function App_Header() {
   return(
     <div>
