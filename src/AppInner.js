@@ -1,5 +1,5 @@
 import React, { useState, Suspense } from "react";
-import sitright from './sitright.png';
+import sitright from './Images/sitright.png';
 
 const PoseDetect = React.lazy( () => import("./PoseDetect"))
 

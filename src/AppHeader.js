@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import {brand_style} from "./styles"
+import {brand_style, ImageIconStyle} from "./styles"
 
 
 function App_Header() {
@@ -24,10 +24,11 @@ function App_Header() {
                   <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-              <Nav style={{alignSelf:'flex-end'}}>
-                <Nav.Link href="#deets">More deets</Nav.Link>
-                <Nav.Link eventKey={2} href="#memes">
-                  Dank memes
+              <Nav>
+                <Nav.Link href="settings">
+                    <Image
+                    source={require('./Images/cog(gray).png')}
+                    style={ImageIconStyle}/>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
