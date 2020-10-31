@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 
 function App() {
   return(
-    <Container fluid className="p-3">
+    <Container fluid>
       <Row> 
         <Col>
           <AppHeader />
