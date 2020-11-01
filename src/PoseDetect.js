@@ -4,7 +4,8 @@ import "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet"; //포즈 인식 모델
 import Webcam from "react-webcam";
 import Status from "./Status"
-
+import Button from 'react-bootstrap/Button'
+import { AppBody } from "./styles";
 
 
 function PoseDetect( { setPoseDetect } ) {
@@ -111,7 +112,7 @@ function PoseDetect( { setPoseDetect } ) {
 
   return (
     <div className="App">
-      <header className="App-body">
+      <div style={AppBody}>
         <Webcam
           ref={webcamRef}
           style={{
@@ -128,17 +129,14 @@ function PoseDetect( { setPoseDetect } ) {
         />
     
         <Status statusLog={statusLog} />
-
-        <button 
+        
+        <Button variant="secondary"
           style={{
-            borderRadius:"4px",
-            color: "#fff",
-            position: "absolute",
-            bottom:"30%",
-            backgroundColor: "#000000"
-            }} 
-          onClick={()=>setPoseDetect(false)}>close</button>
-      </header> 
+            position:"absolute",
+            bottom:"30%"
+          }}
+          onClick={()=>setPoseDetect(false)}>Close</Button>
+      </div> 
     </div>
   );
 }

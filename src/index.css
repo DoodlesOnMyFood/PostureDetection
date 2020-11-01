@@ -82,27 +82,6 @@ code {
   text-align: center;
 }
 
-.App-body {
-  background-color: #282c34;
-  min-height: 70vh;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #fff;
-}
-
-.App-footer {
-  background-color: #000000;
-  min-height: 20vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: #fff;
-}
-
 .App-link {
   color: #61dafb;
 }

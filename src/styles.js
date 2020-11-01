@@ -22,5 +22,6 @@ export const AppBody = {
     justifyContent: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "#fff",
-    height : "100%"
+    height : "100%",
+    textAlign: "center"
 }
