@@ -33,14 +33,6 @@
   color: #fff;
 }
 
-.App-footer {
-  background-color: #000000;
-  min-height: 20vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: #fff;
-}
 
 .App-link {
   color: #61dafb;

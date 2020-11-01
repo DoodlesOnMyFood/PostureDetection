@@ -8,17 +8,15 @@ function App_inner() {
 
   if (showPoseDetect){
     return(
-      <div>
-        <Suspense fallback={
-          <div className="App">
-            <div className="App-body">
-              <h1>Loading...</h1>
-            </div>
+      <Suspense fallback={
+        <div className="App">
+          <div className="App-body">
+            <h1>Loading...</h1>
           </div>
-        }>
-          <PoseDetect setPoseDetect={setPoseDetect}/>
-        </Suspense>
-      </div>
+        </div>
+      }>
+        <PoseDetect setPoseDetect={setPoseDetect}/>
+      </Suspense>
     )
   }
   return(
