@@ -28,6 +28,7 @@ function App_Header() {
               </Nav>
               <Nav>
                 <NavDropdown 
+                  alignRight
                   title={<Image src={require('./Images/cog(gray).png')} style={ImageIconStyle}/>} 
                   id="collasible-nav-dropdown"
                   >
