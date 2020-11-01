@@ -29,7 +29,7 @@ function App_Header() {
               <Nav>
                 <NavDropdown 
                   title={<Image src={require('./Images/cog(gray).png')} style={ImageIconStyle}/>} 
-                  id="collasible-nav-dropdown dropdown-menu-align-right"
+                  id="collasible-nav-dropdown"
                   menuAlign="right">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
