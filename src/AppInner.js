@@ -1,5 +1,6 @@
 import React, { useState, Suspense } from "react";
 import sitright from './Images/sitright.png';
+import { AppBody } from "./styles";
 
 const PoseDetect = React.lazy( () => import("./PoseDetect"))
 
@@ -8,10 +9,12 @@ function App_inner() {
 
   if (showPoseDetect){
     return(
-      <Suspense fallback={
-        <div className="App">
-          <div className="App-body">
-            <h1>Loading...</h1>
+      <div>
+        <Suspense fallback={
+          <div className="App">
+            <div style={AppBody}>
+              <h1>Loading...</h1>
+            </div>
           </div>
         </div>
       }>
@@ -21,7 +24,7 @@ function App_inner() {
   }
   return(
     <div className="App">
-      <div className="App-body">
+      <div style={AppBody}>
         <img src={sitright} alt= "Placeholder" className="cam_style"/>
         <button 
           className="open_button" 
