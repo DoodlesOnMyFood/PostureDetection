@@ -9,14 +9,12 @@ function App_inner() {
 
   if (showPoseDetect){
     return(
-      <div>
         <Suspense fallback={
           <div className="App">
             <div style={AppBody}>
               <h1>Loading...</h1>
             </div>
           </div>
-        </div>
       }>
         <PoseDetect setPoseDetect={setPoseDetect}/>
       </Suspense>
