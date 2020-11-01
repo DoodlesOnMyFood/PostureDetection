@@ -15,7 +15,7 @@ export const ImageIconStyle = {
 
 export const AppBody = {
     backgroundColor: "#282c34",
-    minHeight: "80vh",
+    minHeight: "90vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
