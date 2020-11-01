@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import "./App.css";
 import "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet"; //포즈 인식 모델
 import Webcam from "react-webcam";
@@ -111,33 +110,31 @@ function PoseDetect( { setPoseDetect } ) {
 
 
   return (
-    <div className="App">
-      <div style={AppBody}>
-        <Webcam
-          ref={webcamRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 320,//640,480
-            height: 240,
-          }}
-        />
-    
-        <Status statusLog={statusLog} />
-        
-        <Button variant="secondary"
-          style={{
-            position:"absolute",
-            bottom:"30%"
-          }}
-          onClick={()=>setPoseDetect(false)}>Close</Button>
-      </div> 
-    </div>
+    <div style={AppBody}>
+      <Webcam
+        ref={webcamRef}
+        style={{
+          position: "absolute",
+          marginLeft: "auto",
+          marginRight: "auto",
+          left: 0,
+          right: 0,
+          textAlign: "center",
+          zindex: 9,
+          width: 320,//640,480
+          height: 240,
+        }}
+      />
+  
+      <Status statusLog={statusLog} />
+      
+      <Button variant="secondary"
+        style={{
+          position:"absolute",
+          bottom:"30%"
+        }}
+        onClick={()=>setPoseDetect(false)}>Close</Button>
+    </div> 
   );
 }
 
