@@ -1,3 +1,5 @@
+import { sum } from "@tensorflow/tfjs";
+
 const detect = async (webcamRef, net) => {
     if (//카메라 상태 체크
       typeof webcamRef.current !== "undefined" &&
@@ -29,6 +31,20 @@ function sleep(ms) {
 export {sleep}
 
 export function checkPose(pose){
-    console.log(pose)
-    return false
+  let head = []
+  const accuracyCut = 0.6
+  let i
+  for(i = 0; i <= 4; ++i){
+    if(pose.keypoints[i].score < accuracyCut){
+      return {error : "Can't see person"}
+    }
+    head.push(pose.keypoints[i].position.y)
+  }
+  const head_sum = (head.reduce((a,b) => {return a+b}, 0) / 5)
+
+  if(pose.keypoints[5].score < accuracyCut || pose.keypoints[6].score < accuracyCut){
+    return {error : "Can't see shoulders"}
+  }
+
+  return {error : "", head : head_sum, shoulders : (pose.keypoints[5].position.y + pose.keypoints[6].position.y) /2}
 }
