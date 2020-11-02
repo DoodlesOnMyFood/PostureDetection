@@ -3,7 +3,7 @@ import sitright from './Images/sitright.png';
 import { AppBody } from "./styles";
 import Button from 'react-bootstrap/Button'
 
-const PoseDetect = React.lazy( () => import("./PoseDetect"))
+const PoseDetect = React.lazy( () => import("./BaseLine"))
 
 function App_inner() {
   const [showPoseDetect, setPoseDetect] = useState(false)
