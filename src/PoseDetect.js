@@ -15,6 +15,12 @@ function PoseDetect( { setPoseDetect } ) {
   const [intervalRef, setIntervalRef] = useState(null)
   const [counter, incrementCounter] = useState(0)
   const [statusLog, setStatusLog] = useState([])
+  const [tempBase, setTempBase] = useState(0.0)
+  const [CBase, setCBase] = useState(0.0)
+  const [tempPose, setTempPose] = useState(null)
+  const [resultBP, setResultBP] = useState(0)
+  const [resultGP, setResultGP] = useState(0)
+
   
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -23,6 +29,7 @@ function PoseDetect( { setPoseDetect } ) {
   const baseLineFinding = async () =>{
     const comment = "Correct Your Posture!"
     const temp_count = counter
+
     incrementCounter((prev)=>prev+1)
     setStatusLog((prev) => [ ...prev, {log : comment, key : temp_count}])
     await sleep(3000)
@@ -31,7 +38,10 @@ function PoseDetect( { setPoseDetect } ) {
       let pose = await detect(net)
       sleep(300)
       console.log(pose)
-    }
+      setTempBase((tempBase + (pose["keypoints"][5]["y"] + pose["keypoints"][6]["y"])/2))
+    } //Add y coor of both shoulders and div by 2, repeat 10 times
+    setBaseLine(tempBase/10 + 5) //div tempBase by 10 and add 5 to set BaseLine
+
     setStatusLog((prev) =>{
       let index = prev.indexOf({log : comment, key : temp_count})
       prev.splice(index, 1)
@@ -52,9 +62,23 @@ function PoseDetect( { setPoseDetect } ) {
   }
   const startDetect = () => {
     setIntervalRef(setInterval(() => {
-        detect(net)
+        setTempPose(detect(net))
       }, 500)
     )
+    setCBase((TempPose["keypoints"][5]["y"] + TempPose["keypoints"][6]["y"])/2)
+    //get current shoulder height
+    if(BaseLine > CBase){ //if shoulder is higher than baseline, incrent resultGP
+      setResultGP(resultGP+1)
+    }
+    else{
+      setResultBP(resultBP+1) //if lower, increment resultBP
+    }
+    if((resultGP+resultBP)/2 < .5){ //been in bad posture for more than 50% of the time
+      //display message maybe?
+    }
+    else{
+      //higher than .5, so maybe hide the video and display time?
+    }
     console.log(intervalRef)
   };
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Try and fix this warning if you can.
