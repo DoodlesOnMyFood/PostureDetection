@@ -14,6 +14,7 @@ export default ( { setPoseDetect } ) => {
     const [intervalRef, setIntervalRef ] = useState(null)
     const [net, setNet] = useState(null)
     const [comment, setComment] = useState(null)
+    const [tempBase, setTempBase] = useState(0.0)
     let baseLine = {}
     
     const setBaseLine = (val) =>{
@@ -29,8 +30,11 @@ export default ( { setPoseDetect } ) => {
             if (!checkPose(pose)){
                 return false
             }
+            tempBase = (tempBase + (pose["keypoints"][5]["y"] + pose["keypoints"][6]["y"])/2)
         }
-        setBaseLine(1) // setBaseLine to value. Dummy value for now
+        tempBase = tempBase/10 + 5
+
+        setBaseLine(tempBase) // setBaseLine to value. Dummy value for now
         return true
     }
 
