@@ -25,3 +25,22 @@ export const AppBody = {
     height : "100%",
     textAlign: "center"
 }
+
+export const camMove = {
+    position : "fixed",
+    right : "0px",
+    bottom : '0px',
+    width : 320,
+    height : 240
+  }
+
+export const camInit = {
+//    left: 0,
+//    right: 0,
+    textAlign: "center",
+    position : 'absolute',
+    width : 640, 
+    height : 480
+}
+  
+ 

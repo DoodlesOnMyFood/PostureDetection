@@ -3,9 +3,9 @@ import "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet"; //포즈 인식 모델
 import Webcam from "react-webcam";
 import "./App.css";
-import {AppBody} from "./styles"
-import {detect, sleep, checkPose} from "./Helper"
-
+import {AppBody, camMove, camInit} from "./styles"
+import {detect, sleep, checkPose, Timer} from "./Helper"
+const Time = React.lazy( () => import("./Time"))
 
 
 export default ( { setPoseDetect } ) => {
@@ -86,29 +86,25 @@ export default ( { setPoseDetect } ) => {
       return () => {running = false}
     })
     
-    if(baseLine){
-      return <h1>Implement pose detection.</h1>
-    }
+    
+    const cName = baseLine ? "test" : "init"
+
+
+    // if(baseLine){ baseline for transition
+    //   return <h1>Implement pose detection.</h1>
+    // }
     return (
         <div style={{height:"100%"}}>
           <header style={AppBody}>
+            { baseLine ? <Time /> : ""}
             <p>{comment === null ? "" : comment}</p>
-            <Webcam
-              ref={webcamRef}
-              style={{
-                position: "absolute",
-                marginLeft: "auto",
-                marginRight: "auto",
-                left: 0,
-                right: 0,
-                textAlign: "center",
-                zindex: 9,
-                width: 320,//640,480
-                height: 240,
-              }}
-              onClick={()=>{setPoseDetect(false)}}
-            />
-        
+            <div className={cName}>
+              <Webcam
+                ref={webcamRef}
+                style={{ width : "100%", height : "100%"}}
+                onClick={()=>{setPoseDetect(false)}}
+              />
+          </div>
           </header>  
         </div>
       );

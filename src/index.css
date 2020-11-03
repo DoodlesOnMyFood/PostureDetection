@@ -98,3 +98,36 @@ code {
   margin-top: -50px;
   margin-left: -100px;
 }
+
+@keyframes temp {
+  from {
+    textAlign: center;
+    position : absolute;
+    width : 640px;
+    height : 480px;
+  }
+  to {
+    position : fixed;
+    right : 0px;
+    bottom : 0px;
+    width : 320px;
+    height : 240px;
+  }
+}
+
+.test{
+  position : fixed;
+  right : 0px;
+  bottom : 0px;
+  width : 320px;
+  height : 240px;
+  animation-name: temp;
+  animation-duration: 1.5s;
+}
+
+.init{
+  text-align: center;
+  position : absolute;
+  width : 640px;
+  height : 480px;
+}
