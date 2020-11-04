@@ -4,7 +4,7 @@ import * as posenet from "@tensorflow-models/posenet"; //포즈 인식 모델
 import Webcam from "react-webcam";
 import "./App.css";
 import {AppBody} from "./styles"
-import {detect, sleep, checkPose, Timer} from "./Helper"
+import {detect, sleep, checkPose} from "./Helper"
 const Time = React.lazy( () => import("./Time"))
 
 
@@ -65,7 +65,7 @@ export default ( { setPoseDetect } ) => {
         console.log("temp is", temp)
         return temp
       }
-
+    // eslint-disable-next-line
     useEffect(()=>{
       let running = true
       if(!netLoaded){
@@ -73,7 +73,7 @@ export default ( { setPoseDetect } ) => {
           .then(()=>{setNetLoaded(true)})
       }else if(netLoaded && baseLine === null){
         if (!comment){
-          setComment("Correct Your Posture!") // memory leak happens. Try to fix this later
+          setComment("Correct Your Posture!") 
         }
         baseLineFinding()
         .then((result) => {
