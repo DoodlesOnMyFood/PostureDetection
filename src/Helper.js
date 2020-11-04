@@ -1,4 +1,3 @@
-import { sum } from "@tensorflow/tfjs";
 
 const detect = async (webcamRef, net) => {
     if (//카메라 상태 체크
@@ -33,7 +32,7 @@ export {sleep}
 export function checkPose(pose){
   let head = []
   const accuracyCut = 0.6
-  const SaccuracyCut = 0.5
+  const SaccuracyCut = 0.4
   let i
   for(i = 0; i <= 4; ++i){
     if(pose.keypoints[i].score < accuracyCut){
