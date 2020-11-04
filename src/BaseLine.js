@@ -13,17 +13,8 @@ export default ( { setPoseDetect } ) => {
     const [netLoaded, setNetLoaded] = useState(false)
     const [net, setNet] = useState(null)
     const [comment, setComment] = useState(null)
-<<<<<<< HEAD
-    const [tempBase, setTempBase] = useState(0.0)
-    let baseLine = {}
-    
-    const setBaseLine = (val) =>{
-      baseLine.dummy = val
-    }
-=======
     const [dummy, setDummy] = useState(false)
     const [baseLine, setBaseLine] = useState(null)
->>>>>>> 1de409682b9371d854e4f058b0d600540c9706b3
 
     
     const baseLineFinding = async () =>{
@@ -39,21 +30,12 @@ export default ( { setPoseDetect } ) => {
                 console.log(temp.error)
                 return false
             }
-<<<<<<< HEAD
-            tempBase = (tempBase + (pose["keypoints"][5]["y"] + pose["keypoints"][6]["y"])/2)
-        }
-        tempBase = tempBase/10 + 5
-
-        setBaseLine(tempBase) // setBaseLine to value. Dummy value for now
-        return true
-=======
             console.log("one head : ", temp.head, "one shoulders : ", temp.shoulders)
             head +=temp.head
             shoulders +=temp.shoulders
         }
         console.log( "head average" , head/10, "shoulder average", shoulders / 10)
         return {head : head / 10, shoulders : shoulders / 10}
->>>>>>> 1de409682b9371d854e4f058b0d600540c9706b3
     }
 
     const runPosenet = async () => {
