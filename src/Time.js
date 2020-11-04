@@ -4,6 +4,7 @@ import {Timer} from "./Helper"
 export default () =>{
 
     const [time, setTime] = useState(0)
+    const [running, setRunning] = useState(true)
     const tickTock = useRef(null)
     const timer = useRef(null)
 
@@ -17,17 +18,20 @@ export default () =>{
                 }
             } , 100)
         }
-    }, [time])
+    }, [time, running])
 
     useEffect(() =>{
         return () => {
+            setRunning(false)
             clearInterval(tickTock.current)
         }
     }, [])
 
+    const timeClass = running ? "timerClass" : "" // maybe implement returning animations
+
     return (
-        <div>
-            <h1>{time}</h1>
+        <div className={timeClass}>
+            {time}
         </div>
     )
 }

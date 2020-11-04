@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect, isValidElement } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet"; //포즈 인식 모델
 import Webcam from "react-webcam";
 import "./App.css";
-import {AppBody, camMove, camInit} from "./styles"
+import {AppBody} from "./styles"
 import {detect, sleep, checkPose, Timer} from "./Helper"
 const Time = React.lazy( () => import("./Time"))
 
