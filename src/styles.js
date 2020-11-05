@@ -15,15 +15,16 @@ export const ImageIconStyle = {
 
 export const AppBody = {
     backgroundColor: "#282c34",
-    minHeight: "90vh",
-    display: "flex",
-    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "#fff",
-    height : "100%",
-    textAlign: "center"
+    right : "0px",
+    left : "0px",
+    bottom : "0px",
+    top : '20%',
+    textAlign: "center",
+    position : "fixed"
 }
 
 export const camMove = {
@@ -34,13 +35,8 @@ export const camMove = {
     height : 240
   }
 
-export const camInit = {
-//    left: 0,
-//    right: 0,
-    textAlign: "center",
-    position : 'absolute',
-    width : 640, 
-    height : 480
+export const placeHolder = {
+  textAlign: 'center',
+  width : "66.66666vh",
+  height : '50vh'
 }
-  
- 

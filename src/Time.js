@@ -7,18 +7,14 @@ export default () =>{
     const [running, setRunning] = useState(true)
     const tickTock = useRef(null)
     const timer = useRef(null)
-    const [hour, setHour] = useState(0)
-    const [min, setMin] = useState(0)
-    const [sec, setSec] = useState(0)
-
+    var date = new Date();
+    const [hour, setHour] = useState(date.getHours())
+    const [min, setMin] = useState(date.getMinutes())
+    const [sec, setSec] = useState(date.getSeconds())
     useEffect(() =>{
         if(tickTock.current === null){
             timer.current = new Timer()
-            timer.current.start()
-            var date = new Date();
-            setHour(date.getHours())
-            setMin(date.getMinutes())
-            setSec(date.getSeconds())
+            timer.current.start()          
             tickTock.current = setInterval(() => {
                 if (Math.round(timer.current.getTime() / 1000) > time){
                     setSec(sec+1)
@@ -32,7 +28,6 @@ export default () =>{
                                 setHour(0)
                             }
                         }
-                        return
                     }
                     setTime(Math.round(timer.current.getTime() / 1000))
 

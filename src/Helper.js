@@ -31,7 +31,7 @@ export {sleep}
 
 export function checkPose(pose){
   let head = []
-  const accuracyCut = 0.6
+  const accuracyCut = 0.4
   const SaccuracyCut = 0.4
   let i
   for(i = 0; i <= 4; ++i){
@@ -41,7 +41,7 @@ export function checkPose(pose){
     head.push(pose.keypoints[i].position.y)
   }
   const head_sum = (head.reduce((a,b) => {return a+b}, 0) / 5)
-  console.log(pose.keypoints[5].score, pose.keypoints[6].score )
+  //console.log(pose.keypoints[5].score, pose.keypoints[6].score )
   if(pose.keypoints[5].score < SaccuracyCut || pose.keypoints[6].score < SaccuracyCut){
     return {error : "Can't see shoulders"}
   }

@@ -107,17 +107,24 @@ code {
 
 @keyframes temp {
   from {
-    textAlign: center;
+    text-align: center;
     position : absolute;
-    width : 640px;
-    height : 480px;
+    top : 0;
+    width : 96vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height : 72vh;
   }
   to {
     position : fixed;
     right : 0px;
     bottom : 0px;
-    width : 320px;
-    height : 240px;
+    padding-right : 0;
+    width : 48vh;
+    height : 36vh;
+    top : 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
   }
 }
 
@@ -137,20 +144,26 @@ code {
 }
 
 .test{
-  position : fixed;
-  right : 0px;
-  bottom : 0px;
-  width : 320px;
-  height : 240px;
+  text-align: center;
+  position : absolute;
+  top : 0;
+  width : 96vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height : 72vh;
   animation-name: temp;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .init{
   text-align: center;
   position : absolute;
-  width : 640px;
-  height : 480px;
+  top : 0;
+  width : 96vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height : 72vh;
 }
 
 .timerClass{

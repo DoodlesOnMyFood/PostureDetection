@@ -6,15 +6,18 @@ import "./App.css";
 import {AppBody} from "./styles"
 import {detect, sleep, checkPose} from "./Helper"
 const Time = React.lazy( () => import("./Time"))
+const Instructor = React.lazy( () => import("./Instructor"))
 
 
 export default ( { setPoseDetect } ) => {
     const webcamRef = useRef(null);
+    const intervalRef = useRef(null)
     const [netLoaded, setNetLoaded] = useState(false)
     const [net, setNet] = useState(null)
     const [comment, setComment] = useState(null)
     const [dummy, setDummy] = useState(false)
     const [baseLine, setBaseLine] = useState(null)
+    const [instructorInfo, setInstructorInfo] = useState(null)
 
     
     const baseLineFinding = async () =>{
@@ -47,6 +50,46 @@ export default ( { setPoseDetect } ) => {
         console.log("temp is", temp)
         return temp
       }
+
+    if (baseLine && intervalRef.current === null){
+      intervalRef.current = setInterval(async () => { // set posedetection
+          let i
+          let head = 0
+          let shoulders = 0
+          let errorCount = 0
+          let okCount = 0
+          for(i = 0; i < 20; i++){
+            let pose = await detect(webcamRef, net)
+            sleep(200)
+            let temp = checkPose(pose)
+            if(temp.error && errorCount === 3){
+              console.log(temp.error)
+              setInstructorInfo({
+                head : null,
+                shoulders : null,
+                error : true
+              })
+              return 
+            }
+            if (temp.error){
+              errorCount += 1
+              continue
+            }
+            head +=temp.head
+            shoulders +=temp.shoulders
+            okCount += 1
+          }
+          console.log( "Instructor says : head average" , head/okCount, "shoulder average", shoulders/okCount)
+          setInstructorInfo({
+            head : head/okCount,
+            shoulders : shoulders/okCount,
+            error : null
+          })
+        }, 9000
+      )
+    }
+                                      
+
     // eslint-disable-next-line
     useEffect(()=>{
       let running = true
@@ -84,19 +127,27 @@ export default ( { setPoseDetect } ) => {
       }
       
       return () => {running = false}
-    })
+    }, )
     
     
     const cName = baseLine ? "test" : "init"
+
+    const reset = () =>{
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
+      setInstructorInfo(null)
+      setBaseLine(null)
+    }
 
 
     // if(baseLine){ baseline for transition
     //   return <h1>Implement pose detection.</h1>
     // }
     return (
-        <div style={{height:"100%"}}>
+        <div style={AppBody}>
           <header style={AppBody}>
             { baseLine ? <Time /> : ""}
+            { baseLine ? <Instructor instructorInfo={instructorInfo} baseLine={baseLine} reset={reset} /> : ""}
             <p>{comment === null ? "" : comment}</p>
             <div className={cName}>
               <Webcam
