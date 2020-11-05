@@ -10,8 +10,8 @@ import {brand_style, ImageIconStyle} from "./styles"
 
 function App_Header() {
   return(
-      <Container fluid className="p-0">
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+      <div style={{height : '100%'}}>
+            <Navbar collapseOnSelect sticky='bottom' expand="lg" bg="dark" variant="dark" >
             <Navbar.Brand href="#home" style={brand_style}>교정교관</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
@@ -41,7 +41,7 @@ function App_Header() {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-      </Container>
+      </div>
   )
 }
 
