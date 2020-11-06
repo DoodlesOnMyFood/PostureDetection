@@ -10,11 +10,11 @@ export default () =>{
         time = new Date().toLocaleTimeString()
         if(time.search("오후")===0){
             time = time.slice(2)
-            time.concat(" ", "PM")
+            time = time+" PM"
         }
         else{
-            time = time.slice(3)
-            time.concat(" ", "AM")
+            time = time.slice(2)
+            time = time+" AM"
         }
 
         setCtime(time)
