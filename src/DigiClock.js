@@ -9,7 +9,7 @@ export default () =>{
     const updateTime = () => {
         time = new Date().toLocaleTimeString()
         if(time.search("오후")===0){
-            time = time.slice(3)
+            time = time.slice(2)
             time.concat(" ", "PM")
         }
         else{
