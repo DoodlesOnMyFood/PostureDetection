@@ -9,6 +9,7 @@ export default ({ instructorInfo, baseLine, reset }) =>{
         }
         if (instructorInfo.error){
             count.current += 1
+            console.log(count.current)
             return (
                 <div>
                 </div>

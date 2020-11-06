@@ -7,7 +7,6 @@ import {AppBody} from "./styles"
 import {detect, sleep, checkPose} from "./Helper"
 const Time = React.lazy( () => import("./Time"))
 const Instructor = React.lazy( () => import("./Instructor"))
-const DigiTime = React.lazy( () => import("./DigiClock"))
 
 
 export default ( { setPoseDetect } ) => {
@@ -148,8 +147,6 @@ export default ( { setPoseDetect } ) => {
         <div style={AppBody}>
           <header style={AppBody}>
             { baseLine ? <Time /> : ""}
-            <br/>
-            { baseLine ? <DigiTime /> : ""}
             { baseLine ? <Instructor instructorInfo={instructorInfo} baseLine={baseLine} reset={reset} /> : ""}
             <p>{comment === null ? "" : comment}</p>
             <div className={cName}>

@@ -1,15 +1,19 @@
 import React from "react";
+import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
-import {brand_style} from "./styles"
+import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Image from 'react-bootstrap/Image'
+import {brand_style, ImageIconStyle} from "./styles"
 
 
 
 function App_Header() {
   return(
-      <div style={{height : '100%',}}>
-            <Navbar collapseOnSelect style={{height:"100%", padding: "0px", margin: "0px", }} sticky='bottom' expand="lg" bg="dark" variant="dark" >
+      <div style={{height : '100%'}}>
+            <Navbar collapseOnSelect sticky='bottom' expand="lg" bg="dark" variant="dark" >
             <Navbar.Brand href="#home" style={brand_style}>교정교관</Navbar.Brand>
-            {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="#features">Features</Nav.Link>
@@ -35,7 +39,7 @@ function App_Header() {
                     <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-            </Navbar.Collapse> */}
+            </Navbar.Collapse>
           </Navbar>
       </div>
   )

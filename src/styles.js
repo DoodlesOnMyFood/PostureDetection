@@ -4,7 +4,7 @@ export const debug_border = {
     borderColor : 'black'
 }
 
-export const brand_style = { width:'10%', textAlign:"center", fontSize:'2em', fontFamily:"Black Han Sans"}
+export const brand_style = { width:'30%', margin: "0px", paddingLeft : "2vw", lineHeight:"20vh", height:"100%",  fontSize:'10vh', verticalAlign : "middle", fontFamily:"Black Han Sans"}
 
 export const ImageIconStyle = {
     margin: 5,
