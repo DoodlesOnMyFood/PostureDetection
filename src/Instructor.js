@@ -1,7 +1,19 @@
 import React, { useRef} from "react";
+import {instructorText} from "./styles"
 
-export default ({ instructorInfo, baseLine, reset }) =>{
+export default ({ instructorInfo, baseLine, reset, baseLineConfig }) =>{
     const count = useRef(0)
+    const assess = () =>{
+        return (
+            <p>
+                {`head : ${(instructorInfo.head - baseLine.head)}`}
+                <br/>
+                {`shoulders : ${(instructorInfo.shoulders - baseLine.shoulders)}`}
+            </p>
+        )
+    }
+
+
     const interpret = () => {
         if (count.current > 5){
             reset()
@@ -19,14 +31,13 @@ export default ({ instructorInfo, baseLine, reset }) =>{
         }
         return (
             <div>
-                <p>{`${instructorInfo.head} , ${instructorInfo.shoulders} `}</p>
-                <p>{`${baseLine.head} , ${baseLine.shoulders} `}</p>
+                {assess()}
             </div>
         )
     }
 
     return (
-        <div >
+        <div style={instructorText}>
             {instructorInfo === null ? "" : interpret()}
         </div>
     )

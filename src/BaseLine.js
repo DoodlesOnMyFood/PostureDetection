@@ -14,7 +14,6 @@ export default ( { setPoseDetect } ) => {
     const intervalRef = useRef(null)
     const [netLoaded, setNetLoaded] = useState(false)
     const [net, setNet] = useState(null)
-    const [comment, setComment] = useState(null)
     const [dummy, setDummy] = useState(false)
     const [baseLine, setBaseLine] = useState(null)
     const [instructorInfo, setInstructorInfo] = useState(null)
@@ -97,9 +96,6 @@ export default ( { setPoseDetect } ) => {
         runPosenet().then((model) => {setNet(model)})
           .then(()=>{setNetLoaded(true)})
       }else if(netLoaded && baseLine === null){
-        if (!comment){
-          setComment("Correct Your Posture!") 
-        }
         baseLineFinding()
         .then((result) => {
           if(running){
@@ -140,15 +136,14 @@ export default ( { setPoseDetect } ) => {
     }
 
 
-    // if(baseLine){ baseline for transition
-    //   return <h1>Implement pose detection.</h1>
-    // }
+    const baseLineConfig = () =>{
+      baseLineFinding().then((base) =>{setBaseLine(base)})
+    }
     return (
         <div style={AppBody}>
           <header style={AppBody}>
             { baseLine ? <Time /> : ""}
-            { baseLine ? <Instructor instructorInfo={instructorInfo} baseLine={baseLine} reset={reset} /> : ""}
-            <p>{comment === null ? "" : comment}</p>
+            { baseLine ? <Instructor instructorInfo={instructorInfo} baseLine={baseLine} reset={reset} baseLineConfig={baseLineConfig}/> : ""}
             <div className={cName}>
               <Webcam
                 ref={webcamRef}

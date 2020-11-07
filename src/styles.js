@@ -40,3 +40,11 @@ export const placeHolder = {
   width : "66.66666vh",
   height : '50vh'
 }
+
+export const instructorText = {
+  position : "fixed",
+  top : "50%",
+  left : "0px",
+  fontSize : '1vh',
+
+}
