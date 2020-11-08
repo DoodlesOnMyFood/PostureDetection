@@ -1,7 +1,7 @@
 import React, { useState, Suspense } from "react";
-import sitright from './Images/sitright.png';
-import { AppBody, placeHolder } from "./styles";
+import { AppBody } from "./styles";
 import Button from 'react-bootstrap/Button'
+import Webcam from "react-webcam";
 
 const PoseDetect = React.lazy( () => import("./BaseLine"))
 
@@ -12,7 +12,12 @@ function App_inner() {
     return(
       <Suspense fallback={
         <div style={AppBody}>
-      <img src={sitright} alt= "Placeholder" style={placeHolder}/>
+      {/* <img src={} alt= "Placeholder" style={placeHolder}/> */}
+      <div className="init">
+        <Webcam
+          style={{ width : "100%", height : "100%"}}
+        />
+      </div>
       <Button variant="secondary"
         style={{
           position : "fixed",
@@ -30,7 +35,12 @@ function App_inner() {
   }
   return(
     <div style={AppBody}>
-      <img src={sitright} alt= "Placeholder" style={placeHolder}/>
+      {/* <img src={Outline} alt= "Placeholder" style={placeHolder}/>  */}
+      <div className="init">
+        <Webcam
+          style={{ width : "100%", height : "100%"}}
+        />
+      </div>
       <Button variant="secondary"
         style={{
           position : "fixed",

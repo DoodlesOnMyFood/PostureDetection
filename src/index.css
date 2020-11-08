@@ -75,6 +75,12 @@ code {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Jua';
+  src: local('Jua'), url(./fonts/Jua-Regular.ttf) format('truetype');
+  font-display: swap;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -172,4 +178,13 @@ code {
   animation-duration: 1.5s;
   animation-delay : 0.3s;
   animation-fill-mode: forwards;
+}
+
+.InstructionModal{
+  max-width: 90% !important;
+  height : 80%;
+}
+
+.ModalHeight{
+  height : 100%;
 }

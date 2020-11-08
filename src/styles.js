@@ -36,9 +36,14 @@ export const camMove = {
   }
 
 export const placeHolder = {
-  textAlign: 'center',
-  width : "66.66666vh",
-  height : '50vh'
+  textAlign: "center",
+  position : "absolute",
+  top : "0px",
+  width : "96vh",
+  left: "50%",
+  zIndex : 3,
+  transform: "translate(-50%, 0)",
+  height : "72vh",
 }
 
 export const instructorText = {
@@ -47,4 +52,23 @@ export const instructorText = {
   left : "0px",
   fontSize : '1vh',
 
+}
+
+export const instructionStyle = {
+  position : "fixed",
+  transform: "translate(-50%, -50%)",
+  top : "10%",
+  left : '85%',
+  width : "11vh",
+  height : "11vh",
+  color : "white"
+}
+
+export const settingStyle = {
+  position : "fixed",
+  transform: "translate(-50%, -50%)",
+  top : "10%",
+  width : "11vh",
+  height : "11vh",
+  left : '95%',
 }

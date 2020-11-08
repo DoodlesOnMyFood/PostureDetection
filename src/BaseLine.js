@@ -60,7 +60,13 @@ export default ( { setPoseDetect } ) => {
           for(i = 0; i < 20; i++){
             let pose = await detect(webcamRef, net)
             sleep(200)
-            let temp = checkPose(pose)
+            let temp = null
+            try{
+              temp = checkPose(pose)
+            } catch(e){
+              console.log(e)
+              return
+            }
             if(temp.error && errorCount === 3){
               console.log(temp.error)
               setInstructorInfo({
@@ -148,7 +154,7 @@ export default ( { setPoseDetect } ) => {
               <Webcam
                 ref={webcamRef}
                 style={{ width : "100%", height : "100%"}}
-                onClick={()=>{setPoseDetect(false)}}
+                onClick={()=>{reset(); setPoseDetect(false)}}
               />
           </div>
           </header>  
