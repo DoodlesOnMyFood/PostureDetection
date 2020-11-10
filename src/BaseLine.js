@@ -5,6 +5,8 @@ import Webcam from "react-webcam";
 import "./App.css";
 import {AppBody} from "./styles"
 import {detect, sleep, checkPose} from "./Helper"
+import DetectionError from "./modals/DetectionError"
+
 const Time = React.lazy( () => import("./Time"))
 const Instructor = React.lazy( () => import("./Instructor"))
 
@@ -12,9 +14,10 @@ const Instructor = React.lazy( () => import("./Instructor"))
 export default ( { setPoseDetect } ) => {
     const webcamRef = useRef(null);
     const intervalRef = useRef(null)
+    const errorLog = useRef(null)
+    const [showError, setShowError] = useState(false)
     const [netLoaded, setNetLoaded] = useState(false)
     const [net, setNet] = useState(null)
-    const [dummy, setDummy] = useState(false)
     const [baseLine, setBaseLine] = useState(null)
     const [instructorInfo, setInstructorInfo] = useState(null)
 
@@ -101,7 +104,7 @@ export default ( { setPoseDetect } ) => {
       if(!netLoaded){
         runPosenet().then((model) => {setNet(model)})
           .then(()=>{setNetLoaded(true)})
-      }else if(netLoaded && baseLine === null){
+      }else if(netLoaded && baseLine === null && !showError){
         baseLineFinding()
         .then((result) => {
           if(running){
@@ -114,13 +117,9 @@ export default ( { setPoseDetect } ) => {
               console.log(result)
               setBaseLine(result)
             }else{
-              alert("Can't find person or shoulders") // modal maybe?
-              if (dummy){
-                setDummy((x) => !x)
-              }else {
-                setDummy((x) => !x)
-              }
-              
+              errorLog.current = result
+              setShowError(true)
+
             }
           }
         }
@@ -158,6 +157,7 @@ export default ( { setPoseDetect } ) => {
               />
           </div>
           </header>  
+          <DetectionError show={showError} setShow={setShowError} error={errorLog.current}/>
         </div>
       );
 
