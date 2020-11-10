@@ -15,15 +15,18 @@ export default ( { setPoseDetect } ) => {
     const webcamRef = useRef(null);
     const intervalRef = useRef(null)
     const errorLog = useRef(null)
-    const [showError, setShowError] = useState(false)
+    const [showError, setShowError] = useState(null)
     const [netLoaded, setNetLoaded] = useState(false)
     const [net, setNet] = useState(null)
+    const [clearing, setClearing] = useState(false)
     const [baseLine, setBaseLine] = useState(null)
     const [instructorInfo, setInstructorInfo] = useState(null)
+    let cName = "init"
 
+    console.log(`showError : ${showError} netLoaded : ${netLoaded} net : ${net} clearing : ${clearing} baseLine : ${baseLine} instructorInfo : ${instructorInfo}`)
     
-    const baseLineFinding = async () =>{
-        await sleep(4000)
+    const baseLineFinding = async (x) =>{
+        await sleep(x)
         let i
         let head = 0
         let shoulders = 0
@@ -33,6 +36,7 @@ export default ( { setPoseDetect } ) => {
             let temp = checkPose(pose)
             if (temp.error){
                 console.log(temp.error)
+                errorLog.current = temp.error
                 return false
             }
             console.log("one head : ", temp.head, "one shoulders : ", temp.shoulders)
@@ -60,9 +64,12 @@ export default ( { setPoseDetect } ) => {
           let shoulders = 0
           let errorCount = 0
           let okCount = 0
+          if(showError){
+            return
+          }
           for(i = 0; i < 20; i++){
             let pose = await detect(webcamRef, net)
-            sleep(200)
+            await sleep(200)
             let temp = null
             try{
               temp = checkPose(pose)
@@ -70,7 +77,7 @@ export default ( { setPoseDetect } ) => {
               console.log(e)
               return
             }
-            if(temp.error && errorCount === 3){
+            if(temp.error && errorCount === 3 && !showError){
               console.log(temp.error)
               setInstructorInfo({
                 head : null,
@@ -88,6 +95,9 @@ export default ( { setPoseDetect } ) => {
             okCount += 1
           }
           console.log( "Instructor says : head average" , head/okCount, "shoulder average", shoulders/okCount)
+          if (showError){
+            return
+          }
           setInstructorInfo({
             head : head/okCount,
             shoulders : shoulders/okCount,
@@ -105,7 +115,7 @@ export default ( { setPoseDetect } ) => {
         runPosenet().then((model) => {setNet(model)})
           .then(()=>{setNetLoaded(true)})
       }else if(netLoaded && baseLine === null && !showError){
-        baseLineFinding()
+        baseLineFinding(4000)
         .then((result) => {
           if(running){
             console.log(result)
@@ -117,9 +127,7 @@ export default ( { setPoseDetect } ) => {
               console.log(result)
               setBaseLine(result)
             }else{
-              errorLog.current = result
               setShowError(true)
-
             }
           }
         }
@@ -131,29 +139,49 @@ export default ( { setPoseDetect } ) => {
     }, )
     
     
-    const cName = baseLine ? "test" : "init"
+    if(baseLine && !clearing){
+      cName = "test"
+    }else if (clearing){
+      cName = "clear"
+    }
 
     const reset = () =>{
       clearInterval(intervalRef.current)
       intervalRef.current = null
       setInstructorInfo(null)
       setBaseLine(null)
+      setClearing(false)
     }
 
 
     const baseLineConfig = () =>{
-      baseLineFinding().then((base) =>{setBaseLine(base)})
+      baseLineFinding(0).then((base) =>{
+        if(base){setBaseLine(base)}
+        else{
+          errorLog.current = "문제 생김"
+          setShowError(true)          
+        }
+      })
     }
+
+    const clearState = async () => {
+      setClearing(true)
+      await sleep(3000)
+      reset()
+      setPoseDetect(false)
+      console.log("button should return?")
+    }
+
     return (
         <div style={AppBody}>
           <header style={AppBody}>
-            { baseLine ? <Time /> : ""}
-            { baseLine ? <Instructor instructorInfo={instructorInfo} baseLine={baseLine} reset={reset} baseLineConfig={baseLineConfig}/> : ""}
+            { baseLine ? <Time clear={clearing}/> : ""}
+            { baseLine ? <Instructor clear={clearing} instructorInfo={instructorInfo} baseLine={baseLine} reset={reset} baseLineConfig={baseLineConfig}/> : ""}
             <div className={cName}>
               <Webcam
                 ref={webcamRef}
                 style={{ width : "100%", height : "100%"}}
-                onClick={()=>{reset(); setPoseDetect(false)}}
+                onClick={()=>{clearState()}}
               />
           </div>
           </header>  

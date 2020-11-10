@@ -3,14 +3,15 @@ import Switch from "react-switch"
 import {Timer} from "./Helper"
 
 
-export default () =>{
+export default ({ clear }) =>{
     const clock = useRef("")
     const [time, setTime] = useState(0)
     const [running, setRunning] = useState(true)
     const [timerOrClock, setTimerOrClock] = useState(true)
     const tickTock = useRef(null)
     const timer = useRef(null)
-    
+    const timeClass = useRef("")
+    const removeClass = useRef("")
 
     useEffect(() =>{
         if(tickTock.current === null){
@@ -40,6 +41,12 @@ export default () =>{
     }
 
     useEffect(() =>{
+        if(clear){
+            removeClass.current ="TimeRemove"
+        }
+    }, [clear])
+
+    useEffect(() =>{
         return () => {
             setRunning(false)
             clearInterval(tickTock.current)
@@ -53,7 +60,9 @@ export default () =>{
         return k
     }
 
-    const timeClass = running ? "timerClass" : "" // maybe implement returning animations
+    if(running){
+        timeClass.current = "timerClass"
+    }
 
     const timerParse = () => {
         return updateTime(parseInt(time/3600))+":"+updateTime(parseInt(time/60))+":"+updateTime(time%60)
@@ -61,13 +70,13 @@ export default () =>{
     
 
     return (
-        <div>
+        <div className={removeClass.current}>
             <label>
                 <span>{timerOrClock ? "Switch to Clock" :"Switch to Timer"}</span>
                 <br/>
                 <Switch onChange={setTimerOrClock} checked={timerOrClock} uncheckedIcon={false} checkedIcon={false}/>
             </label>
-            <div className={timeClass}>
+            <div className={timeClass.current}>
                 {timerOrClock ? timerParse() : clock.current}
             </div>
         </div>

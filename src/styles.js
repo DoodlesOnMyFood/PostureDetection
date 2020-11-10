@@ -48,11 +48,16 @@ export const placeHolder = {
 
 export const instructorText = {
   position : "fixed",
-  top : "50%",
-  left : "0px",
+  bottom : "43vh",
+  left : "3vw",
   fontSize : '1vh',
-
+  width : "17vw",
+  height : "30vh",
+  color : "black"
 }
+
+
+
 
 export const instructionStyle = {
   position : "fixed",
@@ -63,6 +68,8 @@ export const instructionStyle = {
   height : "11vh",
   color : "white"
 }
+
+
 
 export const settingStyle = {
   position : "fixed",

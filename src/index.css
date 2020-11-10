@@ -134,16 +134,50 @@ code {
   }
 }
 
-@keyframes clockMove {
+
+@keyframes temp-reverse {
   from {
-    color : aqua;
-    font-size : 1em;
-    font-family: DS-DIGIT;
-    opacity: 0;
+    position : fixed;
+    right : 0px;
+    bottom : 0px;
+    padding-right : 0;
+    width : 48vh;
+    height : 36vh;
+    top : 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
   }
   to {
+    text-align: center;
+    position : absolute;
+    top : 0;
+    width : 96vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height : 72vh;
+  }
+}
+
+
+
+@keyframes clockMove {
+  from {
+    position: fixed;
     color : aqua;
-    font-size : 5em;
+    font-size : 10vh;
+    top : 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    font-family: DS-DIGIT;
+  }
+  to {
+    position: fixed;
+    color : aqua;
+    font-size : 20vh;
+    top : 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     opacity: 1;
     font-family: DS-DIGIT;
   }
@@ -172,6 +206,22 @@ code {
   height : 72vh;
 }
 
+.clear{
+  position : fixed;
+  right : 0px;
+  bottom : 0px;
+  padding-right : 0;
+  width : 48vh;
+  height : 36vh;
+  top : 100%;
+  left: 100%;
+  transform: translate(-100%, -100%);
+  animation-name: temp-reverse;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
 .timerClass{
   opacity:0;
   animation-name: clockMove;
@@ -187,4 +237,112 @@ code {
 
 .ModalHeight{
   height : 100%;
+}
+
+
+@keyframes SergeantAppear {
+  from {
+    opacity: 0;
+    position : fixed;
+    bottom : 0px;
+    left : 0px;
+    width : 10vw;
+    height : 10vw;
+  }
+  to {
+    opacity: 1;
+    position : fixed;
+    bottom : 0px;
+    left : 0px;
+    width : 22vw;
+    height : 22vw;
+  }
+}
+
+@keyframes SergeantDisappear {
+  from {
+    opacity: 1;
+    position : fixed;
+    bottom : 0px;
+    left : 0px;
+    width : 22vw;
+    height : 22vw;
+  }
+  to {
+    opacity: 0;
+    position : fixed;
+    bottom : 0px;
+    left : 0px;
+    width : 10vw;
+    height : 10vw;
+  }
+  
+}
+
+@keyframes goInvisible {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.TimeRemove{
+  animation-name: goInvisible;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.instructorImage {
+  opacity: 0;
+  position : fixed;
+  bottom : 0px;
+  left : 0px;
+  width : 10vw;
+  
+  animation-name: SergeantAppear;
+  animation-duration: 2.5s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.instructorFade {
+  animation-name: SergeantDisappear;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.buttonShow{
+  position : fixed;  
+  bottom : 5vh;
+  left :50%; 
+  transform: translate(-50%, 0);
+}
+
+
+@keyframes moveButton {
+  from {
+    position : fixed;  
+    bottom : 5vh;
+    left :50%; 
+    transform: translate(-50%, 0);
+  }
+  to {
+    position : fixed;  
+    bottom : 5vh;
+    left :50%; 
+    transform: translate(-50%, 500%);
+  }
+}
+
+
+.buttonHide{
+  position : fixed;  
+  bottom : 5vh;
+  left :50%; 
+  transform: translate(-50%, 0);
+  animation-name: moveButton;
+  animation-duration: 1.6s;
+  animation-fill-mode: forwards;
 }

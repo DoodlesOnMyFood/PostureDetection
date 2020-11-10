@@ -3,7 +3,7 @@ import { AppBody } from "./styles";
 import Button from 'react-bootstrap/Button'
 import Webcam from "react-webcam";
 
-const PoseDetect = React.lazy( () => import("./BaseLine"))
+const BaseLine = React.lazy( () => import("./BaseLine"))
 
 function App_inner() {
   const [showPoseDetect, setPoseDetect] = useState(false)
@@ -29,7 +29,7 @@ function App_inner() {
       </Button>
     </div>
       }>
-        <PoseDetect setPoseDetect={setPoseDetect}/>
+        <BaseLine setPoseDetect={setPoseDetect}/>
       </Suspense>
     )
   }
