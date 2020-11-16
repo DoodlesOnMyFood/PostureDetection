@@ -182,6 +182,7 @@ export default ( { setPoseDetect } ) => {
                 ref={webcamRef}
                 style={{ width : "100%", height : "100%"}}
                 onClick={()=>{clearState()}}
+                mirrored={true}
               />
           </div>
           </header>  

@@ -346,3 +346,52 @@ code {
   animation-duration: 1.6s;
   animation-fill-mode: forwards;
 }
+
+.configOff{
+  position : fixed;  
+  bottom : 15vh;
+  left :50%; 
+  transform: translate(-50%, 0);
+  opacity: 0;
+}
+
+@keyframes configAnimation {
+  0% {
+    position : fixed;  
+    bottom : 15vh;
+    left :50%; 
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  25% {
+    position : fixed;  
+    bottom : 15vh;
+    left :50%; 
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  75% {
+    position : fixed;  
+    bottom : 15vh;
+    left :50%; 
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  100%{
+    position : fixed;  
+    bottom : 15vh;
+    left :50%; 
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+}
+
+.configOn{
+  position : fixed;  
+  bottom : 15vh;
+  left :50%; 
+  transform: translate(-50%, 0);
+  opacity: 0;
+  animation-name: configAnimation;
+  animation-duration: 2.6s;
+}

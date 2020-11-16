@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button"
 import TextBox from "./Images/textBox.png"
 import SergeantTextless from "./Images/Sergeant_textless.png"
+import {sleep} from "./Helper"
 
 export default ({ instructorInfo, baseLine, reset, baseLineConfig, clear}) =>{
     const [withText, setWithText] = useState(false)
     const [errorCount, setErrorCount] = useState(0)
     const [animationClass, setAnimationClass] = useState("instructorImage")
+    const [reconfigure, showReconfigure] = useState("configOff")
     const [animationClassButton, setAnimationClassButton] = useState("buttonShow")
     console.log(`withText : ${withText} errorCount : ${errorCount} animationClass : ${animationClass} clear : ${clear} baseLine : ${baseLine} instructorInfo : ${instructorInfo}`)
 
@@ -24,6 +26,12 @@ export default ({ instructorInfo, baseLine, reset, baseLineConfig, clear}) =>{
         reset()
     }
 
+    const refigure = () => {
+        showReconfigure("configOn")
+        sleep(3000)
+            .then(() => showReconfigure("configOff"))
+        
+    }
     
     useEffect(() => {
         if(instructorInfo){
@@ -75,12 +83,16 @@ export default ({ instructorInfo, baseLine, reset, baseLineConfig, clear}) =>{
         return <img src={SergeantTextless} alt="Sergeant" style={{width:'100%', height:'100%'}}/>
     }
 
+
     return (
         <>
+            <div className={reconfigure}>
+                재조정중...
+            </div>
             <div className={animationClass}>
                 {SergeantOutput()}
             </div>
-            <Button className={animationClassButton} onClick={baseLineConfig}>다시 맞추기</Button>
+            <Button className={animationClassButton} onClick={() => {refigure(); baseLineConfig()}}>다시 맞추기</Button>
         </>
     )
 }

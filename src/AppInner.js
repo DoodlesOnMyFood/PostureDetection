@@ -16,6 +16,7 @@ function App_inner() {
       <div className="init">
         <Webcam
           style={{ width : "100%", height : "100%"}}
+          mirrored={true}
         />
       </div>
       <Button variant="secondary"
@@ -39,6 +40,7 @@ function App_inner() {
       <div className="init">
         <Webcam
           style={{ width : "100%", height : "100%"}}
+          mirrored={true}
         />
       </div>
       <Button variant="secondary"
