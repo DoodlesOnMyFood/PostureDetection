@@ -8,7 +8,7 @@ import Settings from './modals/settings'
 
 
 
-function App_Header() {
+function App_Header({ setSensitivity }) {
   const [instructions, showInstructions] = useState(false)
   const [settingsToggle, showSettingsToggle] = useState(false)
   return(
@@ -18,8 +18,8 @@ function App_Header() {
             <img src={help} alt="help icon" style={instructionStyle} onClick={()=>{showInstructions(true)}} />
             <img src={settings} alt="settings icon" style={settingStyle} onClick={()=>{showSettingsToggle(true)}}/>
           </Navbar>
-          <HowToUse show={instructions} setShow={showInstructions}/>
-          <Settings show={settingsToggle} setShow={showSettingsToggle}/>
+          <HowToUse show={instructions} setShow={showInstructions} />
+          <Settings show={settingsToggle} setShow={showSettingsToggle} setSensitivity={setSensitivity}/>
       </div>
   )
 }

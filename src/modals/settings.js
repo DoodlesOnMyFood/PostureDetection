@@ -1,7 +1,20 @@
-import React from "react"
+import React, {useContext} from "react"
 import Modal from "react-bootstrap/Modal"
-
-export default ({ show, setShow }) => {
+import { currentSensitivity } from '../App'
+export default ({ show, setShow, setSensitivity }) => {
+  const sensitivity = useContext(currentSensitivity)
+  const handleChange = (e) => {
+    let val = parseInt(e.target.value)
+    if ( isNaN(val) ){
+      return
+    }
+    if( val < 5){
+      val = 5
+    }else if(val > 20){
+      val = 20
+    }
+    setSensitivity(val)
+  }
     return (
         <>
     
@@ -18,9 +31,11 @@ export default ({ show, setShow }) => {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p style={{height : "80%"}}>
-                placeholder for settings
-              </p>
+              <form style={{height : "80%"}}>
+                민감도 : {sensitivity}    
+                <input style={{marginLeft : '2vw', marginRight : '2vw'}}type="text" onChange={handleChange}/>
+                (5~20)
+              </form>
             </Modal.Body>
           </Modal>
         </>

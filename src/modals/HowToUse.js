@@ -1,10 +1,10 @@
 import React from "react"
 import Modal from "react-bootstrap/Modal"
 
-export default ({ show, setShow }) => {
+export default ({ show, setShow,  }) => {
+    
     return (
         <>
-    
           <Modal
             show={show}
             onHide={() => setShow(false)}
@@ -19,7 +19,7 @@ export default ({ show, setShow }) => {
             </Modal.Header>
             <Modal.Body>
               <p style={{height : "80%"}}>
-                placeholder for instructions.
+                How to use
               </p>
             </Modal.Body>
           </Modal>

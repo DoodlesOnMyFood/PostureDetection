@@ -395,3 +395,25 @@ code {
   animation-name: configAnimation;
   animation-duration: 2.6s;
 }
+
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50%{
+    opacity: 1;
+  }
+  51%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.InstructorText{
+  animation-name: blink;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
